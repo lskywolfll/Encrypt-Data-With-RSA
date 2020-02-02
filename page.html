@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test Encrypt Data</title>
+</head>
+
+<body>
+    test
+    <script src="js/jsencrypt.min.js"></script>
+    <script>
+        // Encripted Data
+        const valor_públic_key = ` -----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDFNtc8kG2PYBz4IgBl3KK8cLvM
+zrRxZ4aTGNUEdOxEGhvJIfC3tzi+zc2PuEtoNPkh3T0uDOrq6KH8wX3Fh0+UBIKh
+h3BlNyQEMLRmqOeJjSIdx408xGUHvtD9x69DUA9YwhxOfdeFqQzXhhjgYPiITlUA
+a07xXumzwUoOESLTDQIDAQAB
+-----END PUBLIC KEY-----`;
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(valor_públic_key);
+        var encrypted = encrypt.encrypt('TestString');
+        console.log(encrypted);
+
+        // Test descencrypted Data
+    </script>
+</body>
+
+</html>
