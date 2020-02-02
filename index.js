@@ -12,13 +12,15 @@ const key = new NodeRSA({ b: 1024 });
 // La libreria del front para encryptar los datos usa el pkcs1 y tenemos que establecer que nosotros en node-rsa usaremos su mismo mecanismo para poder encryptar y descrifrar jsencrypt
 key.setOptions({encryptionScheme: 'pkcs1'});
 // Creacion de las llaves
-const public_key = key.exportKey('public');
-const private_key = key.exportKey('private');
-// Valores de las llaves al crearse
-console.log('llave publica: \n', public_key);
-console.log('llave privada: \n', private_key);
+// const public_key = key.exportKey('public');
+// const private_key = key.exportKey('private');
+// // Valores de las llaves al crearse
+// console.log('llave publica: \n', public_key);
+// console.log('llave privada: \n', private_key);
 // mensaje a escriptar
-const secret = ' hola';
+const secret = {
+    hola:'hola'
+}
 
 const valor_públic_key = ` -----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHz8NVuztXCwpdMl80xaXQei+k
@@ -54,16 +56,18 @@ console.log('mensaje encryptado: ', encryptMessage);
 // desencriptar por llave privada
 const descriptionMessage = private_key_rsa.decrypt(encryptMessage, 'utf8');
 console.log('Secreto desencriptado: ', descriptionMessage);
+console.log(JSON.parse(descriptionMessage).hola);
 
 app.post('/Verificar', (req, res) => {
-    console.log(req.body.data);
+    console.log(req.body);
     const keyvalue = req.body.data;
     const descriptionMessage = private_key_rsa.decrypt(keyvalue, 'utf8');
-    console.log('Valor enviado encryptado: ', descriptionMessage);
+    console.log(descriptionMessage);
+    console.log('Valor enviado encryptado: ', JSON.parse(descriptionMessage));
 
     res.status(200).json({
         data: req.body.data,
-        descencrypted: descriptionMessage
+        descencrypted: JSON.parse(descriptionMessage)
     })
 });
 
