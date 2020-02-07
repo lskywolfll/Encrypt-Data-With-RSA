@@ -8,6 +8,8 @@ app.use(bodyParser.json());
 app.use(cors());
 // Generador De LLaves Publicas Y Privadas
 const NodeRSA = require('node-rsa');
+// b: number => cantidad de bits para ser utilizados en el algoritmo de encriptacion y descencriptacion
+// la cantidad de bits que sean utiliadas seran las cuales nosotros podremos agregarla data limitada ya que la cantidad de bits utilizada en la creacion del rsa solo permite una cierta cantidad de encriptacion para todos los datos
 const key = new NodeRSA({ b: 15360 });
 // La libreria del front para encryptar los datos usa el pkcs1 y tenemos que establecer que nosotros en node-rsa usaremos su mismo mecanismo para poder encryptar y descrifrar jsencrypt
 key.setOptions({encryptionScheme: 'pkcs1'});
