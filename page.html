@@ -19,7 +19,9 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3x3kdtQATtI9GNGO2ulhymLiI
 f3jgKTaIjWx27x/PisGaLPB5GqKxsRWDbuCmo5J0JNKwir6Mn53r8L0mZmeKW7AV
 WrZ2vVSoBdu30TUvzwIDAQAB
 -----END PUBLIC KEY-----`;
-        var encrypt = new JSEncrypt();
+        // con esto definimos la cantidad de bits a utilizar para poder encryptar y descencryptar
+        // default_key_size: number
+        var encrypt = new JSEncrypt({default_key_size: 8192});
         encrypt.setPublicKey(valor_públic_key);
         var objTest = {
             name: 'Rene',

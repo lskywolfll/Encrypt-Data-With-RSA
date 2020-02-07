@@ -8,15 +8,15 @@ app.use(bodyParser.json());
 app.use(cors());
 // Generador De LLaves Publicas Y Privadas
 const NodeRSA = require('node-rsa');
-const key = new NodeRSA({ b: 1024 });
+const key = new NodeRSA({ b: 15360 });
 // La libreria del front para encryptar los datos usa el pkcs1 y tenemos que establecer que nosotros en node-rsa usaremos su mismo mecanismo para poder encryptar y descrifrar jsencrypt
 key.setOptions({encryptionScheme: 'pkcs1'});
 // Creacion de las llaves
-const public_key = key.exportKey('public');
-const private_key = key.exportKey('private');
-// Valores de las llaves al crearse
-console.log('llave publica: \n', public_key);
-console.log('llave privada: \n', private_key);
+// const public_key = key.exportKey('public');
+// const private_key = key.exportKey('private');
+// // Valores de las llaves al crearse
+// console.log('llave publica: \n', public_key);
+// console.log('llave privada: \n', private_key);
 // mensaje a escriptar
 const secret = {
     hola:'hola'
